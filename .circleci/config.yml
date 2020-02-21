@@ -36,7 +36,7 @@ jobs:
                 sleep 1
               done
               echo Failed waiting for MySQL && exit 1
-              
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -54,4 +54,5 @@ jobs:
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/codecept run
+      - run: ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=coverage.xml
+
