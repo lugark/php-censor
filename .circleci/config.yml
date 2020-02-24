@@ -77,7 +77,7 @@ jobs:
                       - ./vendor
 
             - run: mkdir -p ./build/results/
-            - run: ./vendor/bin/phpcs --report=xml --report-file=./build/results/phpcs-result.xml src
+            - run: ./vendor/bin/phpcs --report=junit --report-file=./build/results/phpcs-result.xml src
             - store_test_results:
                   path:  ./build
             - store_artifacts:
