@@ -53,7 +53,7 @@ jobs:
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
-      - run: phpdbg -qrr ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=./build/coverage.xml --coverage-html ./build/coverage-report --log-junit ./build/junit.xml
+      - run: phpdbg -qrr ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=./build/results/coverage.xml --coverage-html ./build/coverage-report --log-junit ./build/results/junit.xml
 
       - store_test_results:
             path:  ./build
