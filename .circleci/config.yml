@@ -51,8 +51,6 @@ jobs:
                   paths:
                       - ./vendor
 
-            # run tests with phpunit or codecept
-            #- run: ./vendor/bin/phpunit
             - run: phpdbg -qrr ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover=./build/results/coverage.xml --coverage-html ./build/coverage-report --log-junit ./build/results/junit.xml
 
             - store_test_results:
@@ -66,7 +64,23 @@ jobs:
             - image: circleci/php:7.1-node-browsers
         steps:
             - checkout
+
+            # Download and cache dependencies
+            - restore_cache:
+                  keys:
+                      - v1-dependencies-{{ checksum "composer.json" }}
+                      - v1-dependencies-
+            - run: composer install -n --prefer-dist
+            - save_cache:
+                  key: v1-dependencies-{{ checksum "composer.json" }}
+                  paths:
+                      - ./vendor
+
             - run: ./vendor/bin/phpcs --report=xml --report-file=./build/results/phpcs-result.xml src
+            - store_test_results:
+                  path:  ./build
+            - store_artifacts:
+                  path:  ./build
 
 
 workflows:
