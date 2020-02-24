@@ -64,8 +64,8 @@ workflows:
                     path:  ./build
 
             analyze:
-              requires:
-                  - build
+                requires:
+                    - build
                 docker:
                     # Specify the version you desire here
                     - image: circleci/php:7.1-node-browsers
