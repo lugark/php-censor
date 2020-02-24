@@ -19,7 +19,6 @@ jobs:
         MYSQL_DATABASE: test_db
       #
       # - image: redis:2.8.19
-      -
     resource_class: small
 
     steps:
